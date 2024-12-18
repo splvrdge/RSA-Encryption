@@ -24,9 +24,9 @@
 Submitted by:
 | Name | Role |
 |------|------|
-| Francis James Lagang | Developer |
-| Margaret Grace Docdoc | Developer |
-| Simone Montañez | Developer |
+| Francis James Lagang | Student |
+| Margaret Grace Docdoc | Student |
+| Simone Montañez | Student |
 
 *Final Project for CS 3103, DCISM, University of San Carlos. December 2024.*
 
