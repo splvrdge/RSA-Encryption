@@ -1,0 +1,7 @@
+# Compiled files
+rsa-encrypt
+*.o
+*.lst
+
+# macOS specific
+.DS_Store
