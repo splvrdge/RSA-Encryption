@@ -55,10 +55,10 @@ In this implementation, we use:
 1. **Key Generation**
    ```mermaid
    graph LR
-   A[Choose p,q] --> B[Calculate n = p×q]
-   B --> C[Calculate φ(n)]
-   C --> D[Choose e]
-   D --> E[Calculate d]
+      A["Choose p,q"] --> B["Calculate n = p×q"]
+      B --> C["Calculate phi(n)"]
+      C --> D["Choose e"]
+      D --> E["Calculate d"]
    ```
 
 2. **Encryption**
