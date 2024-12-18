@@ -1,156 +1,156 @@
 # RSA Encryption Program in Assembly
 
-This is an educational implementation of RSA (Rivest-Shamir-Adleman) encryption in x86_64 assembly language for macOS. The program demonstrates the basic principles of RSA encryption using small prime numbers.
+> A multi-architecture implementation of RSA encryption in assembly language, supporting x86_64 and ARM64 processors.
 
-Sumbitted by Francis James Lagang, Margaret Grace Docdoc, and Simone Montañez. Final Project for CS 3103, DCISM, University of San Carlos. December 2024.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Architectures](https://img.shields.io/badge/Architectures-x86__64%20%7C%20ARM64-blue)
+![Platform](https://img.shields.io/badge/Platform-Docker-2496ED)
 
-## What is RSA?
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/RSA_Security_Logo.svg/320px-RSA_Security_Logo.svg.png" alt="RSA Logo" width="200"/>
+</div>
+
+## Table of Contents
+- [Overview](#overview)
+- [System Requirements](#system-requirements)
+- [Architecture Support](#architecture-support)
+- [Running with Docker](#running-with-docker)
+- [Program Features](#program-features)
+- [How to Use](#how-to-use)
+- [Examples](#examples)
+
+## Overview
+
+Submitted by:
+| Name | Role |
+|------|------|
+| Francis James Lagang | Developer |
+| Margaret Grace Docdoc | Developer |
+| Simone Montañez | Developer |
+
+*Final Project for CS 3103, DCISM, University of San Carlos. December 2024.*
+
+### What is RSA?
 
 RSA is a public-key cryptosystem widely used for secure data transmission. It is based on the practical difficulty of factoring the product of two large prime numbers.
+
+[!NOTE]
+This implementation is for educational purposes and demonstrates the basic principles of RSA encryption using small prime numbers.
 
 ### Key Components
 
 In this implementation, we use:
-- p = 7 (first prime number)
-- q = 13 (second prime number)
-- n = p × q = 91 (modulus)
-- φ(n) = (p-1) × (q-1) = 72 (Euler's totient)
-- e = 5 (public exponent)
-- d = 29 (private exponent)
+
+| Component | Value | Description |
+|-----------|-------|-------------|
+| p | 7 | First prime number |
+| q | 13 | Second prime number |
+| n | 91 | Modulus (p × q) |
+| φ(n) | 72 | Euler's totient ((p-1) × (q-1)) |
+| e | 5 | Public exponent |
+| d | 29 | Private exponent |
 
 ### How RSA Works
 
-1. **Key Generation**:
-   - Choose two prime numbers (p and q)
-   - Calculate n = p × q
-   - Calculate φ(n) = (p-1) × (q-1)
-   - Choose e (public exponent) such that 1 < e < φ(n) and e is coprime to φ(n)
-   - Calculate d (private exponent) such that d × e ≡ 1 (mod φ(n))
+1. **Key Generation**
+   ```mermaid
+   graph LR
+   A[Choose p,q] --> B[Calculate n = p×q]
+   B --> C[Calculate φ(n)]
+   C --> D[Choose e]
+   D --> E[Calculate d]
+   ```
 
-2. **Encryption**:
-   - c = m^e mod n
-   - Where m is the message and c is the ciphertext
+2. **Encryption**
+   ```math
+   c = m^e \bmod n
+   ```
+   Where:
+   - m is the message
+   - c is the ciphertext
 
-3. **Decryption**:
-   - m = c^d mod n
-   - Where c is the ciphertext and m is the original message
+3. **Decryption**
+   ```math
+   m = c^d \bmod n
+   ```
+   Where:
+   - c is the ciphertext
+   - m is the original message
 
 ## System Requirements
 
-This implementation has versions for:
-- macOS operating system (x86_64 architecture)
-- Linux (x86_64 architecture)
-- ARM64 architecture (via Docker)
+This implementation supports multiple architectures:
+
+- macOS (x86_64)
+- Linux (x86_64)
+- ARM64 systems (Apple Silicon, etc.)
 
 ### Architecture Support
 
-The repository includes three versions of the code:
-- `rsa-encrypt.asm`: Original version for macOS (x86_64)
-- `rsa-encrypt-linux.asm`: Linux version for Docker container (x86_64)
-- `rsa-encrypt-arm64.asm`: ARM64 version for Docker container (ARM64)
+The repository includes three versions:
 
-All versions implement the same RSA encryption algorithm but use different assembly instructions and system calls appropriate for their respective architectures.
+| File | Architecture | Purpose |
+|------|--------------|---------|
+| `rsa-encrypt.asm` | x86_64 | macOS native |
+| `rsa-encrypt-linux-x86_64.asm` | x86_64 | Linux/Docker |
+| `rsa-encrypt-arm64.asm` | ARM64 | Docker ARM |
 
-### Compatibility Notes
-
-This code is not directly portable to other operating systems due to:
-- macOS-specific system calls
-- macOS-specific binary format (Mach-O)
-- macOS-specific linking conventions
-
-To run on other systems (Linux, Windows), the code would need significant modifications to:
-- System call numbers and conventions
-- Binary format specifications
-- Linking commands
-- Assembly directives
-
-If you need to run this on another system, consider:
-1. Modifying the system calls for your target OS
-2. Using appropriate assembler directives for your system
-3. Adjusting the build commands for your platform
+[!IMPORTANT]
+All versions implement identical RSA encryption logic but use architecture-specific assembly instructions and system calls.
 
 ## Running with Docker
 
-You can run this program on any system that has Docker installed, including ARM64-based systems like Apple Silicon Macs:
+### For x86_64 Systems
+```bash
+# Build the image
+docker build -f Dockerfile.x86_64 -t rsa-encrypt-x86 .
 
-### For x86_64 systems:
-1. Build the Docker image:
-   ```bash
-   docker build -f Dockerfile.x86_64 -t rsa-encrypt-x86 .
-   ```
+# Run the container
+docker run -it rsa-encrypt-x86
+```
 
-2. Run the container:
-   ```bash
-   docker run -it rsa-encrypt-x86
-   ```
+### For ARM64 Systems (e.g., Apple Silicon Macs)
+```bash
+# Build the image
+docker build -t rsa-encrypt-arm .
 
-### For ARM64 systems (e.g., Apple Silicon Macs):
-1. Build the Docker image:
-   ```bash
-   docker build -t rsa-encrypt-arm .
-   ```
+# Run the container
+docker run -it rsa-encrypt-arm
+```
 
-2. Run the container:
-   ```bash
-   docker run -it rsa-encrypt-arm
-   ```
-
-The Docker containers will work on any system that has Docker installed, regardless of the operating system. The ARM64 version is specifically optimized for ARM-based systems like Apple Silicon Macs, ensuring native performance on these platforms.
+[!NOTE]
+The Docker containers work on any system with Docker installed, regardless of the OS.
 
 ## Program Features
 
-- Takes a two-digit number as input (0-99)
-- Displays RSA parameters (p, q, n, e, d, φ(n))
-- Encrypts the input using the public key (e, n)
-- Decrypts the ciphertext using the private key (d, n)
-- Input validation for digits
+- Two-digit number input (0-99)
+- RSA parameter display
+- Real-time encryption
+- Instant decryption
+- Input validation
 
 ## How to Use
 
-1. Assemble the program:
-   ```bash
-   nasm -f macho64 rsa-encrypt.asm
-   ```
+<details>
+<summary>Native macOS Build (x86_64)</summary>
 
-2. Link the object file:
-   ```bash
-   ld -o rsa-encrypt rsa-encrypt.o -macosx_version_min 10.12 -no_pie -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -lSystem
-   ```
+```bash
+# Assemble
+nasm -f macho64 rsa-encrypt.asm
 
-3. Run the program:
-   ```bash
-   ./rsa-encrypt
-   ```
+# Link
+ld -o rsa-encrypt rsa-encrypt.o -macosx_version_min 10.12 -no_pie -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -lSystem
 
-4. Enter two single digits when prompted
-
-## Note
-
-This is a simplified implementation for educational purposes. Real-world RSA:
-- Uses much larger prime numbers (typically 2048 bits or larger)
-- Includes proper padding schemes
-- Uses secure random number generation
-- Implements additional security measures
-
-### Interesting Case: Fixed Points
-
-In this implementation, you might notice that some numbers encrypt to themselves. For example:
+# Run
+./rsa-encrypt
 ```
-Original number: 21
-Encrypted number: 21
-Decrypted number: 21
-```
+</details>
 
-These numbers are called "fixed points" of the RSA function. They occur when m^e mod n = m. This is one of the reasons why real-world RSA implementations:
-1. Use much larger prime numbers to reduce the frequency of fixed points
-2. Apply padding schemes that make the input more random
-3. Never encrypt raw numbers directly
+## Examples
 
-## Example Outputs
+<details>
+<summary>Example 1: Regular Case</summary>
 
-Here are different examples showing how the encryption works with various inputs:
-
-### Example 1 - Regular Case
 ```
 RSA Parameters:
   p (first prime) = 7
@@ -166,42 +166,31 @@ Original number: 53
 Encrypted number: 79
 Decrypted number: 53
 ```
+</details>
 
-### Example 2 - Fixed Point Case
+<details>
+<summary>Example 2: Fixed Point Case</summary>
+
 ```
-RSA Parameters:
-  p (first prime) = 7
-  q (second prime) = 13
-  n (modulus) = 91 (7 × 13)
-  e (public exponent) = 5
-  d (private exponent) = 29
-  φ(n) = 72 = (7-1) × (13-1)
-------------------------
-Enter first digit (0-9): 2
-Enter second digit (0-9): 1
 Original number: 21
 Encrypted number: 21
 Decrypted number: 21
 ```
 
-### Example 3 - Another Case
-```
-RSA Parameters:
-  p (first prime) = 7
-  q (second prime) = 13
-  n (modulus) = 91 (7 × 13)
-  e (public exponent) = 5
-  d (private exponent) = 29
-  φ(n) = 72 = (7-1) × (13-1)
-------------------------
-Enter first digit (0-9): 1
-Enter second digit (0-9): 1
-Original number: 11
-Encrypted number: 72
-Decrypted number: 11
-```
+[!NOTE]
+This is a "fixed point" where the number encrypts to itself.
+</details>
 
-These examples demonstrate:
-1. Regular encryption where the encrypted number is different (53 → 79 → 53)
-2. A fixed point where the number encrypts to itself (21 → 21 → 21)
-3. Another regular case with different values (11 → 72 → 11)
+## Security Note
+
+[!WARNING]
+This is an educational implementation. Production RSA systems use:
+- Much larger prime numbers (2048+ bits)
+- Proper padding schemes
+- Secure random number generation
+- Additional security measures
+
+---
+<div align="center">
+University of San Carlos - Department of Computer and Information Sciences and Mathematics
+</div>
