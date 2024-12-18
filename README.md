@@ -94,8 +94,25 @@ This is a simplified implementation for educational purposes. Real-world RSA:
 - Uses secure random number generation
 - Implements additional security measures
 
-## Example Output
+### Interesting Case: Fixed Points
 
+In this implementation, you might notice that some numbers encrypt to themselves. For example:
+```
+Original number: 21
+Encrypted number: 21
+Decrypted number: 21
+```
+
+These numbers are called "fixed points" of the RSA function. They occur when m^e mod n = m. This is one of the reasons why real-world RSA implementations:
+1. Use much larger prime numbers to reduce the frequency of fixed points
+2. Apply padding schemes that make the input more random
+3. Never encrypt raw numbers directly
+
+## Example Outputs
+
+Here are different examples showing how the encryption works with various inputs:
+
+### Example 1 - Regular Case
 ```
 RSA Parameters:
   p (first prime) = 7
@@ -111,3 +128,42 @@ Original number: 53
 Encrypted number: 79
 Decrypted number: 53
 ```
+
+### Example 2 - Fixed Point Case
+```
+RSA Parameters:
+  p (first prime) = 7
+  q (second prime) = 13
+  n (modulus) = 91 (7 × 13)
+  e (public exponent) = 5
+  d (private exponent) = 29
+  φ(n) = 72 = (7-1) × (13-1)
+------------------------
+Enter first digit (0-9): 2
+Enter second digit (0-9): 1
+Original number: 21
+Encrypted number: 21
+Decrypted number: 21
+```
+
+### Example 3 - Another Case
+```
+RSA Parameters:
+  p (first prime) = 7
+  q (second prime) = 13
+  n (modulus) = 91 (7 × 13)
+  e (public exponent) = 5
+  d (private exponent) = 29
+  φ(n) = 72 = (7-1) × (13-1)
+------------------------
+Enter first digit (0-9): 1
+Enter second digit (0-9): 1
+Original number: 11
+Encrypted number: 72
+Decrypted number: 11
+```
+
+These examples demonstrate:
+1. Regular encryption where the encrypted number is different (53 → 79 → 53)
+2. A fixed point where the number encrypts to itself (21 → 21 → 21)
+3. Another regular case with different values (11 → 72 → 11)
