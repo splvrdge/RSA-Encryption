@@ -37,11 +37,19 @@ In this implementation, we use:
 
 ## System Requirements
 
-This implementation is specifically designed for:
-- macOS operating system
-- x86_64 (64-bit) architecture
-- NASM assembler
-- macOS system development tools
+This implementation has versions for:
+- macOS operating system (x86_64 architecture)
+- Linux (x86_64 architecture)
+- ARM64 architecture (via Docker)
+
+### Architecture Support
+
+The repository includes three versions of the code:
+- `rsa-encrypt.asm`: Original version for macOS (x86_64)
+- `rsa-encrypt-linux.asm`: Linux version for Docker container (x86_64)
+- `rsa-encrypt-arm64.asm`: ARM64 version for Docker container (ARM64)
+
+All versions implement the same RSA encryption algorithm but use different assembly instructions and system calls appropriate for their respective architectures.
 
 ### Compatibility Notes
 
@@ -63,27 +71,31 @@ If you need to run this on another system, consider:
 
 ## Running with Docker
 
-If you want to run this program on any system that has Docker installed:
+You can run this program on any system that has Docker installed, including ARM64-based systems like Apple Silicon Macs:
 
+### For x86_64 systems:
 1. Build the Docker image:
    ```bash
-   docker build -t rsa-encrypt .
+   docker build -f Dockerfile.x86_64 -t rsa-encrypt-x86 .
    ```
 
 2. Run the container:
    ```bash
-   docker run -it rsa-encrypt
+   docker run -it rsa-encrypt-x86
    ```
 
-This will work on any system that has Docker installed, regardless of the operating system.
+### For ARM64 systems (e.g., Apple Silicon Macs):
+1. Build the Docker image:
+   ```bash
+   docker build -t rsa-encrypt-arm .
+   ```
 
-### Note on Versions
+2. Run the container:
+   ```bash
+   docker run -it rsa-encrypt-arm
+   ```
 
-The repository includes two versions of the code:
-- `rsa-encrypt.asm`: Original version for macOS
-- `rsa-encrypt-linux.asm`: Linux version for Docker container
-
-Both versions implement the same RSA encryption algorithm but use different system calls appropriate for their respective operating systems.
+The Docker containers will work on any system that has Docker installed, regardless of the operating system. The ARM64 version is specifically optimized for ARM-based systems like Apple Silicon Macs, ensuring native performance on these platforms.
 
 ## Program Features
 
