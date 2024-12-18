@@ -34,8 +34,8 @@ Submitted by:
 
 RSA is a public-key cryptosystem widely used for secure data transmission. It is based on the practical difficulty of factoring the product of two large prime numbers.
 
-[!NOTE]
-This implementation is for educational purposes and demonstrates the basic principles of RSA encryption using small prime numbers.
+> [!NOTE]  
+> This implementation is for educational purposes and demonstrates the basic principles of RSA encryption using small prime numbers.
 
 ### Key Components
 
@@ -95,8 +95,8 @@ The repository includes three versions:
 | `rsa-encrypt-linux-x86_64.asm` | x86_64 | Linux/Docker |
 | `rsa-encrypt-arm64.asm` | ARM64 | Docker ARM |
 
-[!IMPORTANT]
-All versions implement identical RSA encryption logic but use architecture-specific assembly instructions and system calls.
+> [!IMPORTANT]  
+> All versions implement identical RSA encryption logic but use architecture-specific assembly instructions and system calls.
 
 ## Running with Docker
 
@@ -118,8 +118,8 @@ docker build -t rsa-encrypt-arm .
 docker run -it rsa-encrypt-arm
 ```
 
-[!NOTE]
-The Docker containers work on any system with Docker installed, regardless of the OS.
+> [!TIP]
+> The Docker containers work on any system with Docker installed, regardless of the OS.
 
 ## Program Features
 
@@ -177,18 +177,18 @@ Encrypted number: 21
 Decrypted number: 21
 ```
 
-[!NOTE]
-This is a "fixed point" where the number encrypts to itself.
+> [!NOTE]  
+> This is a "fixed point" where the number encrypts to itself.
 </details>
 
 ## Security Note
 
-[!WARNING]
-This is an educational implementation. Production RSA systems use:
-- Much larger prime numbers (2048+ bits)
-- Proper padding schemes
-- Secure random number generation
-- Additional security measures
+> [!CAUTION]
+> This is an educational implementation. Production RSA systems require:
+> - Much larger prime numbers (2048+ bits)
+> - Proper padding schemes
+> - Secure random number generation
+> - Additional security measures
 
 ---
 <div align="center">
