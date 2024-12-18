@@ -59,6 +59,30 @@ If you need to run this on another system, consider:
 2. Using appropriate assembler directives for your system
 3. Adjusting the build commands for your platform
 
+## Running with Docker
+
+If you want to run this program on any system that has Docker installed:
+
+1. Build the Docker image:
+   ```bash
+   docker build -t rsa-encrypt .
+   ```
+
+2. Run the container:
+   ```bash
+   docker run -it rsa-encrypt
+   ```
+
+This will work on any system that has Docker installed, regardless of the operating system.
+
+### Note on Versions
+
+The repository includes two versions of the code:
+- `rsa-encrypt.asm`: Original version for macOS
+- `rsa-encrypt-linux.asm`: Linux version for Docker container
+
+Both versions implement the same RSA encryption algorithm but use different system calls appropriate for their respective operating systems.
+
 ## Program Features
 
 - Takes a two-digit number as input (0-99)
