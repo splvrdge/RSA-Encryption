@@ -7,7 +7,7 @@
 ![Platform](https://img.shields.io/badge/Platform-Docker-2496ED)
 
 <div align="center">
-  <img src="https://www.securew2.com/wp-content/uploads/2024/01/RSA-Encryption-Works.png" alt="RSA Mechanism" width="200"/>
+  <img src="https://www.securew2.com/wp-content/uploads/2024/01/RSA-Encryption-Works.png" alt="RSA Mechanism"/>
 </div>
 
 ## Table of Contents
