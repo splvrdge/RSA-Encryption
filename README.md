@@ -108,6 +108,6 @@ RSA Parameters:
 Enter first digit (0-9): 5
 Enter second digit (0-9): 3
 Original number: 53
-Encrypted number: 19
+Encrypted number: 79
 Decrypted number: 53
 ```
