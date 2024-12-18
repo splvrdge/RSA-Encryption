@@ -2,6 +2,8 @@
 
 This is an educational implementation of RSA (Rivest-Shamir-Adleman) encryption in x86_64 assembly language for macOS. The program demonstrates the basic principles of RSA encryption using small prime numbers.
 
+Sumbitted by Francis James Lagang, Margaret Grace Docdoc, and Simone Montañez. Final Project for CS 3103, DCISM, University of San Carlos. December 2024.
+
 ## What is RSA?
 
 RSA is a public-key cryptosystem widely used for secure data transmission. It is based on the practical difficulty of factoring the product of two large prime numbers.
