@@ -11,6 +11,7 @@
 </div>
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [System Requirements](#system-requirements)
 - [Architecture Support](#architecture-support)
@@ -19,6 +20,7 @@
 - [How to Use](#how-to-use)
 - [Examples](#examples)
 - [Python Verification Code](#python-verification-code)
+- [Documentation and Demonstration](#documentation-and-demonstration)
 
 ## Overview
 
@@ -29,7 +31,7 @@ Submitted by:
 | Margaret Grace Docdoc | Student |
 | Simone Montañez | Student |
 
-*Final Project for CS 3103, DCISM, University of San Carlos. December 2024.*
+_Final Project for CS 3103, DCISM, University of San Carlos. December 2024._
 
 ### What is RSA?
 
@@ -42,18 +44,19 @@ RSA is a public-key cryptosystem widely used for secure data transmission. It is
 
 In this implementation, we use:
 
-| Component | Value | Description |
-|-----------|-------|-------------|
-| p | 7 | First prime number |
-| q | 13 | Second prime number |
-| n | 91 | Modulus (p × q) |
-| φ(n) | 72 | Euler's totient ((p-1) × (q-1)) |
-| e | 5 | Public exponent |
-| d | 29 | Private exponent |
+| Component | Value | Description                     |
+| --------- | ----- | ------------------------------- |
+| p         | 7     | First prime number              |
+| q         | 13    | Second prime number             |
+| n         | 91    | Modulus (p × q)                 |
+| φ(n)      | 72    | Euler's totient ((p-1) × (q-1)) |
+| e         | 5     | Public exponent                 |
+| d         | 29    | Private exponent                |
 
 ### How RSA Works
 
 1. **Key Generation**
+
    ```mermaid
    graph LR
       A["Choose p,q"] --> B["Calculate n = p×q"]
@@ -63,10 +66,13 @@ In this implementation, we use:
    ```
 
 2. **Encryption**
+
    ```math
    c = m^e \bmod n
    ```
+
    Where:
+
    - m is the message
    - c is the ciphertext
 
@@ -90,11 +96,11 @@ This implementation supports multiple architectures:
 
 The repository includes three versions:
 
-| File | Architecture | Purpose |
-|------|--------------|---------|
-| `rsa-encrypt.asm` | x86_64 | macOS native |
-| `rsa-encrypt-linux-x86_64.asm` | x86_64 | Linux/Docker |
-| `rsa-encrypt-arm64.asm` | ARM64 | Docker ARM |
+| File                           | Architecture | Purpose      |
+| ------------------------------ | ------------ | ------------ |
+| `rsa-encrypt.asm`              | x86_64       | macOS native |
+| `rsa-encrypt-linux-x86_64.asm` | x86_64       | Linux/Docker |
+| `rsa-encrypt-arm64.asm`        | ARM64        | Docker ARM   |
 
 > [!IMPORTANT]  
 > All versions implement identical RSA encryption logic but use architecture-specific assembly instructions and system calls.
@@ -102,6 +108,7 @@ The repository includes three versions:
 ## Running with Docker
 
 ### For x86_64 Systems
+
 ```bash
 # Build the image
 docker build -f Dockerfile.x86_64 -t rsa-encrypt-x86 .
@@ -111,6 +118,7 @@ docker run -it rsa-encrypt-x86
 ```
 
 ### For ARM64 Systems (e.g., Apple Silicon Macs)
+
 ```bash
 # Build the image
 docker build -t rsa-encrypt-arm .
@@ -145,6 +153,7 @@ ld -o rsa-encrypt rsa-encrypt.o -macosx_version_min 10.12 -no_pie -L/Library/Dev
 # Run
 ./rsa-encrypt
 ```
+
 </details>
 
 ## Examples
@@ -167,6 +176,7 @@ Original number: 53
 Encrypted number: 79
 Decrypted number: 53
 ```
+
 </details>
 
 <details>
@@ -180,6 +190,7 @@ Decrypted number: 21
 
 > [!NOTE]  
 > This is a "fixed point" where the number encrypts to itself.
+
 </details>
 
 ## Python Verification Code
@@ -198,30 +209,55 @@ The script includes three test cases:
 
 1. Message = 11
    - Shows standard RSA encryption/decryption
-   
 2. Message = 53
    - Demonstrates encryption with a larger number
-   
 3. Message = 21
    - Demonstrates a "fixed point" where the encrypted value equals the original message
    - This occurs because 21^5 mod 91 = 21
 
 Each test case shows:
+
 - Step-by-step encryption process
 - Final encrypted value
 - Decryption verification
 - Comparison between manual calculation and Python's built-in function
 
+## Documentation and Demonstration
+
+### Console Results
+![Console Results](media/console-result.png)
+The image above shows the assembly program's output for test cases:
+- Input: 11 -> Encrypted: 72
+- Input: 53 -> Encrypted: 79
+- Input: 21 -> Encrypted: 21 (fixed point)
+
+### Python Verification
+![Python Verification](media/verify-python.png)
+The Python verification script confirms the assembly program's results, showing:
+- Step-by-step encryption process
+- Matching results between assembly and Python implementations
+- Successful decryption back to original values
+
+### Program Demo
+[Watch Program Demo](media/program-demo.mp4)
+
+This video demonstrates:
+- How to compile and run the assembly program
+- Interactive input/output process
+- Real-time encryption results
+
 ## Security Note
 
 > [!CAUTION]
 > This is an educational implementation. Production RSA systems require:
+>
 > - Much larger prime numbers (2048+ bits)
 > - Proper padding schemes
 > - Secure random number generation
 > - Additional security measures
 
 ---
+
 <div align="center">
 University of San Carlos - Department of Computer and Information Sciences and Mathematics
 </div>
