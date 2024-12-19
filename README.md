@@ -18,6 +18,7 @@
 - [Program Features](#program-features)
 - [How to Use](#how-to-use)
 - [Examples](#examples)
+- [Python Verification Code](#python-verification-code)
 
 ## Overview
 
@@ -180,6 +181,36 @@ Decrypted number: 21
 > [!NOTE]  
 > This is a "fixed point" where the number encrypts to itself.
 </details>
+
+## Python Verification Code
+
+A Python script (`rsa_verify.py`) is included to verify the RSA encryption and decryption operations. This script shows the step-by-step calculations and verifies the results using Python's built-in functions.
+
+### Running the Python Script
+
+```bash
+python3 rsa_verify.py
+```
+
+### Test Cases
+
+The script includes three test cases:
+
+1. Message = 11
+   - Shows standard RSA encryption/decryption
+   
+2. Message = 53
+   - Demonstrates encryption with a larger number
+   
+3. Message = 21
+   - Demonstrates a "fixed point" where the encrypted value equals the original message
+   - This occurs because 21^5 mod 91 = 21
+
+Each test case shows:
+- Step-by-step encryption process
+- Final encrypted value
+- Decryption verification
+- Comparison between manual calculation and Python's built-in function
 
 ## Security Note
 
