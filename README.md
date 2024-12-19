@@ -225,21 +225,21 @@ Each test case shows:
 ## Documentation and Demonstration
 
 ### Console Results
-![Console Results](media/console-result.png)
+![Console Results](Media/console-result.png)
 The image above shows the assembly program's output for test cases:
 - Input: 11 -> Encrypted: 72
 - Input: 53 -> Encrypted: 79
 - Input: 21 -> Encrypted: 21 (fixed point)
 
 ### Python Verification
-![Python Verification](media/verify-python.png)
+![Python Verification](Media/verify-python.png)
 The Python verification script confirms the assembly program's results, showing:
 - Step-by-step encryption process
 - Matching results between assembly and Python implementations
 - Successful decryption back to original values
 
 ### Program Demo
-[Watch Program Demo](media/program-demo.mp4)
+[Watch Program Demo](Media/program-demo.mp4)
 
 This video demonstrates:
 - How to compile and run the assembly program
